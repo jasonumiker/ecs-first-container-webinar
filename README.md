@@ -35,7 +35,7 @@ exit
 ### Prereqs
 This sets up the local development environment and builds the JAR for our example in Ubuntu/WSL.
 
-TODO: Document example for the Mac
+TODO: Document how to install Maven and OpenJDK for the Mac
 
 ```
 sudo apt update && sudo apt install maven default-jdk -y
@@ -84,7 +84,7 @@ exit
 Preqs:
 * Create an ECR repository in the AWS Console with the name nyancat-docker
 * Update the docker-compose.yml with your ECR repo details
-* Update the docker-compose.yml with your Route53 zone and ACM cert details or remove the x-aws-cloudformation block
+* Update the docker-compose.yml with your Route53 zone and ACM cert details - or remove the x-aws-cloudformation block and show a HTTP on 80 with ALB DNS name example instead
 * Get your AWS CLI working with an appropriate role via environment variables and then run the following commands:
 
 ```
