@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  webapp:
+    build: ../aws-cdk-nyan-cat/nyan-cat
+    image: 505070718513.dkr.ecr.ap-southeast-2.amazonaws.com/nyancat-docker:latest
+    ports:
+      - "80:80"
+
+x-aws-cloudformation:
+  Resources:
+    WebappTCP80Listener:
+      Properties:
+        Certificates:
+          - CertificateArn: "arn:aws:acm:ap-southeast-2:505070718513:certificate/4acc2716-8555-49ec-adec-8f565c135eee"
+        Protocol: HTTPS
+        Port: 443
+    Default80Ingress:
+      Properties:
+        CidrIp: "0.0.0.0/0"
+        IpProtocol: "tcp"
+        FromPort: 443
+        ToPort: 443
+    LoadBalancerAlias:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        AliasTarget:
+          DNSName: 
+            Fn::GetAtt:
+              - LoadBalancer
+              - DNSName
+          HostedZoneId: 
+            Fn::GetAtt:
+              - LoadBalancer
+              - CanonicalHostedZoneID
+        HostedZoneId: Z3MGKRT2K1FTPC
+        Name: nyancat-docker.jasonumiker.com
+        Type: A  
