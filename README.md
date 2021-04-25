@@ -37,14 +37,23 @@ exit
 ### Prereqs
 This sets up the local development environment and builds the JAR for our example in Ubuntu/WSL.
 
-TODO: Document how to install Maven and OpenJDK for the Mac
-
 ```
 sudo apt update && sudo apt install maven default-jdk -y
 cd ~/ecs-first-container-webinar/top-spring-boot-docker/demo
 ./mvnw install -DskipTests
 cp target/docker-demo-0.0.1-SNAPSHOT.jar ~/ecs-first-container-webinar/simple-spring-demo/
 ```
+
+This sets up the local development environment and builds the JAR for our example on the Mac.
+
+```
+brew update && brew install maven
+sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+cd ~/ecs-first-container-webinar/top-spring-boot-docker/demo
+./mvnw install -DskipTests
+cp target/docker-demo-0.0.1-SNAPSHOT.jar ~/ecs-first-container-webinar/simple-spring-demo/
+```
+
 ### Basic example (put our existing JAR in the OpenJDK container)
 
 ```
@@ -106,6 +115,8 @@ docker compose up
 docker compose ps
 # Explain there is also an alias from nyancat-docker.jasonumiker.com to this LB address
 # Go to https://nyancat-docker.jasonumiker.com and show it working
+# Switch docker context back for other demos
+docker context use default
 ```
 
 ## Copilot Demo
@@ -130,7 +141,10 @@ copilot init
 ## CDK Demo
 
 Prereqs:
-* Install node, npm and typescript
+* Install node and npm
+    * On Mac `brew install node`
+    * On Ubuntu/WSL `sudo apt update && sudo apt install nodejs npm -y`
+* Install Typescript `sudo npm install -g typescript`
 * Sign in to the AWS CLI such that commands run then:
 
 ```
