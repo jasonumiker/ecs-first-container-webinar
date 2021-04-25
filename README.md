@@ -4,6 +4,8 @@ The foundation for this was the [aws-cdk-nyan-cat](https://github.com/nathanpeck
 
 I added a local dev experience, Docker Desktop to ECS as well as Copilot deployment option for the same artifact to round out the other demos for my webinar.
 
+Run `git submodule update --init --recursive` to bring in the submodules.
+
 ## Local Docker Demo
 
 ### Example of nginx and then nginx serving nyancat
@@ -127,4 +129,22 @@ copilot init
 
 ## CDK Demo
 
-TODO: Add instructions for CDK Demo
+Prereqs:
+* Install node, npm and typescript
+* Sign in to the AWS CLI such that commands run then:
+
+```
+cd ~/ecs-first-container-webinar/aws-cdk-nyan-cat/cdk
+cp ../../cdk-https-example/package.json .
+cp ../../cdk-https-example/cdk-stack.ts lib
+npm install
+npm run build
+cdk deploy
+```
+
+(Optional) Update to the latest verison of the CDK:
+```
+cd ~/ecs-first-container-webinar/aws-cdk-nyan-cat/cdk
+sudo npm install -g npm-check-updates
+ncu -u
+```
