@@ -107,6 +107,7 @@ docker compose up
 # Go to http://localhost:8080 and show it is running on laptop
 # Log into ECR to be able to push our image
 aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 505070718513.dkr.ecr.ap-southeast-2.amazonaws.com
+export AWS_DEFAULT_REGION=ap-southeast-2
 docker-compose build
 docker-compose push
 docker context use myecscontext
